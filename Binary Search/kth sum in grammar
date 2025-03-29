@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string kthGrammarHelper(int n, int k, string ans) {
+        if (n == 1) {
+            return "0";
+        }
+        string temp = "";
+        for (int i = 0; i < ans.size(); i++) {
+            if (ans[i] == '0') {  
+                temp += "01"; 
+            } else {
+                temp += "10";  
+            }
+        }
+        return kthGrammarHelper(n - 1, k, temp);
+    }
+
+    int kthGrammar(int n, int k) {
+        string ans = kthGrammarHelper(n, k, "0");
+        return ans[k - 1] - '0'; 
+        
+    }
+};
