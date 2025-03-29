@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int findExtra(vector<int>& a, vector<int>& b) {
+        // add code here.
+        int low=0, high=b.size();
+        while(low<=high){
+            
+            int mid=(high+low)/2;
+            if(mid==b.size()){
+                return mid;
+            }
+            if(b[mid]==a[mid]){
+                low=mid+1;
+            }else{
+                if(mid>0){
+                    if(a[mid-1]==b[mid-1]){
+                    return mid;
+                }
+                }
+                    high=mid-1;
+                
+            }
+        }
+        return low;
+    }
+};
