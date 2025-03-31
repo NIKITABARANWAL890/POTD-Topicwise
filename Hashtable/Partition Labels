@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        map<char, int> mp;
+        vector<int> ans;
+        int n = s.size();
+        int i = 0, j = 0;
+
+        for (int k = 0; k < n; k++) {
+            mp[s[k]]++;
+        }
+
+        set<char> st;
+        while (j < n) {
+            char ch = s[j];
+            st.insert(ch);
+            mp[ch]--;
+
+            if (mp[ch] == 0) {
+                mp.erase(ch);
+                st.erase(ch);
+            }
+
+            j++;
+            if (st.empty()) { 
+                ans.push_back(j - i);
+                i = j; 
+            }
+        }
+        return ans;
+    }
+};
